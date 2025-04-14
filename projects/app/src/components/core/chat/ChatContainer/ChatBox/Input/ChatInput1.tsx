@@ -24,7 +24,7 @@ import { Select } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { MessageContext } from '@/pages/chat/share';
 
-import { MessageProvider, useMessageContext } from '@/pages/chat/MessageContext';
+import { MessageProvider, useMessageContext } from '@/context/MessageContext';
 const InputGuideBox = dynamic(() => import('./InputGuideBox'));
 
 const fileTypeFilter = (file: File) => {

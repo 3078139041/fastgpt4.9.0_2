@@ -37,21 +37,3 @@ export const useMessageContext = () => {
   }
   return context;
 };
-
-// // 3. 创建自定义Hook方便使用
-// export const useMessageContext = () => {
-//   const context = useContext(MessageContext);
-//   if (!context) {
-//     // throw new Error('useMessageContext must be used within a MessageProvider');
-//   }
-//   return context;
-// };
-
-// // 4. 创建Provider组件
-// export const MessageProvider = ({ children }: { children: React.ReactNode }) => {
-//   const [message, setMessage] = useState<MessageContextType | null>(null);
-
-//   return (
-//     <MessageContext.Provider value={{ message, setMessage }}>{children}</MessageContext.Provider>
-//   );
-// };

@@ -15,6 +15,7 @@ import { ReactElement, useEffect } from 'react';
 import { NextPage } from 'next';
 import { getWebReqUrl } from '@fastgpt/web/common/system/utils';
 import SystemStoreContextProvider from '@fastgpt/web/context/useSystem';
+import { MessageProvider } from '@/context/MessageContext';
 
 type NextPageWithLayout = NextPage & {
   setLayout?: (page: ReactElement) => JSX.Element;
@@ -44,26 +45,28 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <>
-      <NextHead
-        title={title}
-        desc={
-          feConfigs?.systemDescription ||
-          process.env.SYSTEM_DESCRIPTION ||
-          `${title}${t('app:intro')}`
-        }
-        icon={getWebReqUrl(feConfigs?.favicon || process.env.SYSTEM_FAVICON)}
-      />
-      {scripts?.map((item, i) => <Script key={i} strategy="lazyOnload" {...item}></Script>)}
-
-      <QueryClientContext>
-        <SystemStoreContextProvider device={pageProps.deviceSize}>
-          <I18nContextProvider>
-            <ChakraUIContext>
-              <Layout>{setLayout(<Component {...pageProps} />)}</Layout>
-            </ChakraUIContext>
-          </I18nContextProvider>
-        </SystemStoreContextProvider>
-      </QueryClientContext>
+      <MessageProvider>
+        {/* 在入口包裹所有页面 */}
+        <NextHead
+          title={title}
+          desc={
+            feConfigs?.systemDescription ||
+            process.env.SYSTEM_DESCRIPTION ||
+            `${title}${t('app:intro')}`
+          }
+          icon={getWebReqUrl(feConfigs?.favicon || process.env.SYSTEM_FAVICON)}
+        />
+        {scripts?.map((item, i) => <Script key={i} strategy="lazyOnload" {...item}></Script>)}
+        <QueryClientContext>
+          <SystemStoreContextProvider device={pageProps.deviceSize}>
+            <I18nContextProvider>
+              <ChakraUIContext>
+                <Layout>{setLayout(<Component {...pageProps} />)}</Layout>
+              </ChakraUIContext>
+            </I18nContextProvider>
+          </SystemStoreContextProvider>
+        </QueryClientContext>
+      </MessageProvider>
     </>
   );
 }

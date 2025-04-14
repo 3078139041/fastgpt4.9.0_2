@@ -41,7 +41,7 @@ import { log } from 'console';
 import { Spinner, Text } from '@chakra-ui/react';
 import { Button } from '@chakra-ui/react';
 import { createContext } from 'react';
-import { MessageProvider, useMessageContext } from './MessageContext';
+import { MessageProvider, useMessageContext } from '@/context/MessageContext';
 const CustomPluginRunBox = dynamic(() => import('@/pageComponents/chat/CustomPluginRunBox'));
 // 定义一个上下文
 export const MessageContext = createContext({});
@@ -101,8 +101,9 @@ const OutLink = (props: Props) => {
     console.log('authToken:', authToken);
 
     if (!authToken) {
-      window.location.href = 'http://121.37.224.213:13090/login'; // 为空时跳转
+      // window.location.href = 'http://121.37.224.213:13090/login'; // 为空时跳转
       // window.location.href = 'http://192.168.1.6:80/login'; // 为空时跳转
+      window.location.href = 'http://192.168.1.5:13090/login'; // 为空时跳转
       // window.location.href = 'https://alex.csic.cn/login'; // 为空时跳转
     }
   };

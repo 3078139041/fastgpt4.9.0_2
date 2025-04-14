@@ -39,7 +39,8 @@ RUN [ -z "$proxy" ] || sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /
 
 RUN apk add --no-cache libc6-compat && npm install -g pnpm@9.4.0
 
-ENV NODE_OPTIONS="--max-old-space-size=4096"
+# ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NODE_OPTIONS="--max-old-space-size=8192"
 ENV NEXT_PUBLIC_BASE_URL=$base_url
 RUN pnpm --filter=app build
 

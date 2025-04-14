@@ -48,10 +48,12 @@ const Navbar = ({ unread }: { unread: number }) => {
   useEffect(() => {
     // 若 Cookie 是 "FastgptKey=abc123; otherKey=xxx"，则匹配 "FastgptKey=abc123"，并捕获 "abc123"
     const match = document.cookie.match(new RegExp('(^| )is_admin=([^;]+)'));
+    // const root = document.cookie.match(new RegExp('(^| )root=([^;]+)'));
+    const root = localStorage.getItem('root');
+    console.log('root', root);
     // match[2] 是正则中第二个捕获组 ([^;]+) 的值（即 FastgptKey 对应的值
 
-    console.log(match, '3333');
-    if (match && match[2] && match[2] == '11') {
+    if ((match && match[2] && match[2] == '11') || (root && root == 'true')) {
       setMenuControl(true);
     } else {
       setMenuControl(false);
@@ -114,7 +116,7 @@ const Navbar = ({ unread }: { unread: number }) => {
     if (menuControl) {
       return fullNavbarList;
     }
-    // 非管理员：只保留 "知识库" (Datasets)
+    // 非管理员：保留 "知识库" (Datasets) 和 应用
     else {
       return fullNavbarList.filter(
         (item) =>
