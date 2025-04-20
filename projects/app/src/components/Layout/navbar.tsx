@@ -118,10 +118,7 @@ const Navbar = ({ unread }: { unread: number }) => {
     }
     // 非管理员：保留 "知识库" (Datasets) 和 应用
     else {
-      return fullNavbarList.filter(
-        (item) =>
-          item.label === t('common:navbar.Datasets') || item.label === t('common:navbar.Studio')
-      );
+      return fullNavbarList.filter((item) => item.label === t('common:navbar.Datasets'));
     }
   }, [lastChatAppId, t, menuControl]);
 
