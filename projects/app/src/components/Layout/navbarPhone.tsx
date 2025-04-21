@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Flex, Box } from '@chakra-ui/react';
 import { useChatStore } from '@/web/core/chat/context/useChatStore';
@@ -10,8 +10,27 @@ const NavbarPhone = ({ unread }: { unread: number }) => {
   const router = useRouter();
   const { t } = useTranslation();
   const { lastChatAppId } = useChatStore();
-  const navbarList = useMemo(
-    () => [
+
+  // 管理员登录ture：显示左侧完整导航栏
+  // 非管理员登录 false：除了知识库其他的都隐藏
+  const [menuControl, setMenuControl] = useState(false);
+  useEffect(() => {
+    // 若 Cookie 是 "FastgptKey=abc123; otherKey=xxx"，则匹配 "FastgptKey=abc123"，并捕获 "abc123"
+    const match = document.cookie.match(new RegExp('(^| )is_admin=([^;]+)'));
+    // const root = document.cookie.match(new RegExp('(^| )root=([^;]+)'));
+    const root = localStorage.getItem('root');
+    console.log('root', root);
+    // match[2] 是正则中第二个捕获组 ([^;]+) 的值（即 FastgptKey 对应的值
+
+    if ((match && match[2] && match[2] == '11') || (root && root == 'true')) {
+      setMenuControl(true);
+    } else {
+      setMenuControl(false);
+    }
+  }, []);
+
+  const navbarList = useMemo(() => {
+    const fullNavbarList = [
       // {
       //   label: t('common:navbar.Chat'),
       //   icon: 'core/chat/chatLight',
@@ -62,16 +81,23 @@ const NavbarPhone = ({ unread }: { unread: number }) => {
         ],
         unread
       }
-    ],
-    [t, lastChatAppId, unread]
-  );
+    ];
+    // 管理员：返回完整菜单
+    if (menuControl) {
+      return fullNavbarList;
+    }
+    // 非管理员：保留 "知识库" (Datasets) 和 应用
+    else {
+      return fullNavbarList.filter((item) => item.label === t('common:navbar.Datasets'));
+    }
+  }, [t, lastChatAppId, unread, menuControl]);
 
   return (
     <>
       <Flex
         alignItems={'center'}
         h={'100%'}
-        justifyContent={'space-between'}
+        justifyContent={navbarList.length == 1 ? 'center' : 'space-between'}
         backgroundColor={'white'}
         position={'relative'}
         px={4}

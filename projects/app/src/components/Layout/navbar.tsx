@@ -58,8 +58,6 @@ const Navbar = ({ unread }: { unread: number }) => {
     } else {
       setMenuControl(false);
     }
-
-    console.log(navbarList);
   }, []);
 
   const navbarList = useMemo(() => {

@@ -103,8 +103,8 @@ const OutLink = (props: Props) => {
     if (!authToken) {
       // window.location.href = 'http://121.37.224.213:13090/login'; // 为空时跳转
       // window.location.href = 'http://192.168.1.6:80/login'; // 为空时跳转
-      // window.location.href = 'http://192.168.1.5:13090/login'; // 为空时跳转
-      window.location.href = 'http://192.168.10.92:13090/login'; // 为空时跳转
+      window.location.href = 'http://192.168.1.5:13090/login'; // 为空时跳转
+      // window.location.href = 'http://192.168.10.92:13090/login'; // 为空时跳转
       // window.location.href = 'https://alex.csic.cn/login'; // 为空时跳转
     }
   };
