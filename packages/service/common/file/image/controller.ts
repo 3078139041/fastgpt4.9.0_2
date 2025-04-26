@@ -52,7 +52,8 @@ export async function uploadMongoImg({
   );
 
   // 确保 IP 和端口号在路径中
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, '') || 'https://sec.csic.cn';
+  // const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, '') || 'https://sec.csic.cn';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.replace(/\/$/, '') || 'https://openui.csic.cn';
   return `${baseUrl}${imageBaseUrl}${String(_id)}.${extension}`;
 }
 const getIdFromPath = (path?: string) => {

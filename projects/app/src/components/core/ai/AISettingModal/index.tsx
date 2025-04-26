@@ -159,7 +159,7 @@ const AIChatSettingsModal = ({
           </Box>
         </Flex>
 
-        <TableContainer
+        {/* <TableContainer
           my={4}
           bg={'primary.50'}
           borderRadius={'lg'}
@@ -169,7 +169,7 @@ const AIChatSettingsModal = ({
           <Table fontSize={'xs'} overflow={'overlay'}>
             <Thead>
               <Tr bg={'transparent !important'} color={'myGray.600'}>
-                {/* <Th fontSize={'mini'} pb={2}>
+                <Th fontSize={'mini'} pb={2}>
                   <HStack spacing={1}>
                     <Box> {t('app:ai_point_price')}</Box>
                     <ModelPriceModal>
@@ -178,7 +178,7 @@ const AIChatSettingsModal = ({
                       )}
                     </ModelPriceModal>
                   </HStack>
-                </Th> */}
+                </Th>
                 <Th fontSize={'mini'} pb={2}>
                   {t('common:core.ai.Max context')}
                 </Th>
@@ -226,7 +226,7 @@ const AIChatSettingsModal = ({
               </Tr>
             </Tbody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
 
         {showMaxHistoriesSlider && (
           <Flex {...FlexItemStyles}>

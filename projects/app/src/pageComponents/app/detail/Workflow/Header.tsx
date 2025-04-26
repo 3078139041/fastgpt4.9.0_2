@@ -183,7 +183,7 @@ const Header = () => {
                   }}
                 />
               )}
-              <Button
+              {/* <Button
                 size={'sm'}
                 leftIcon={<MyIcon name={'core/workflow/debug'} w={['14px', '16px']} />}
                 variant={'whitePrimary'}
@@ -195,7 +195,7 @@ const Header = () => {
                 }}
               >
                 {t('common:core.workflow.Run')}
-              </Button>
+              </Button> */}
               {!showHistoryModal && (
                 <SaveButton
                   isLoading={loading}

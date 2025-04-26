@@ -69,12 +69,12 @@ const NodeUserGuide = ({ data, selected }: NodeProps<FlowNodeItemType>) => {
             <Box mt={3} pt={3} borderTop={'base'} borderColor={'myGray.200'}>
               <FileSelectConfig {...componentsProps} />
             </Box>
-            <Box mt={3} pt={3} borderTop={'base'} borderColor={'myGray.200'}>
+             {/*<Box mt={3} pt={3} borderTop={'base'} borderColor={'myGray.200'}>
               <TTSGuide {...componentsProps} />
             </Box>
             <Box mt={3} pt={3} borderTop={'base'} borderColor={'myGray.200'}>
               <WhisperGuide {...componentsProps} />
-            </Box>
+            </Box>*/}
             {/* <Box mt={3} pt={4} borderTop={'base'} borderColor={'myGray.200'}>
               <QuestionGuide {...componentsProps} />
             </Box>

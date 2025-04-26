@@ -79,7 +79,7 @@ const Share = ({ appId }: { appId: string; type: PublishChannelEnum }) => {
           <Box color={'myGray.900'} fontSize={'lg'}>
             {t('common:core.app.Share link')}
           </Box>
-          <QuestionTip label={t('common:core.app.Share link desc detail')} />
+          {/* <QuestionTip label={t('common:core.app.Share link desc detail')} /> */}
         </HStack>
         <Button
           variant={'whitePrimary'}
@@ -107,7 +107,7 @@ const Share = ({ appId }: { appId: string; type: PublishChannelEnum }) => {
                   <Th>{t('common:common.Expired Time')}</Th>
                 </>
               )}
-              <Th>{t('common:support.outlink.Usage points')}</Th>
+              {/* <Th>{t('common:support.outlink.Usage points')}</Th> */}
               <Th>{t('common:core.app.share.Is response quote')}</Th>
               {feConfigs?.isPlus && (
                 <>

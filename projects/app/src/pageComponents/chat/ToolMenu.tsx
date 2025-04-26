@@ -45,7 +45,7 @@ const ToolMenu = ({ history }: { history: ChatItemType[] }) => {
     // 跳转到指定 IP 地址
     // window.location.replace('http://121.37.224.213:13090');
     // window.location.replace('http://192.168.1.6:80');
-    window.location.replace('http://192.168.1.5:13090');
+    window.location.replace('https://openui.csic.cn');
     // window.location.replace('http://192.168.10.92:13090');
     // window.location.replace('https://alex.csic.cn/login');
   };
