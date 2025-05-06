@@ -56,6 +56,7 @@ const AppCard = ({ showSaveStatus, isSaved }: { showSaveStatus: boolean; isSaved
                 <MyIcon name={'edit'} w={'16px'} mr={2} />
                 <Box fontSize={'sm'}>{t('app:edit_info')}</Box>
               </MyBox>
+
               {/* <MyBox
                 display={'flex'}
                 size={'md'}
@@ -68,7 +69,7 @@ const AppCard = ({ showSaveStatus, isSaved }: { showSaveStatus: boolean; isSaved
               >
                 <MyIcon name={'key'} w={'16px'} mr={2} />
                 <Box fontSize={'sm'}>{t('app:Role_setting')}</Box>
-              </MyBox>
+              </MyBox> */}
               <Box w={'full'} h={'1px'} bg={'myGray.200'} my={1} />
               <MyBox
                 display={'flex'}
@@ -97,7 +98,7 @@ const AppCard = ({ showSaveStatus, isSaved }: { showSaveStatus: boolean; isSaved
                   appName={appDetail.name}
                   getWorkflowData={flowData2StoreData}
                 />
-              </MyBox> */}
+              </MyBox>
               {appDetail.permission.hasWritePer && feConfigs?.show_team_chat && (
                 <>
                   <Box w={'full'} h={'1px'} bg={'myGray.200'} my={1} />

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import { Box, Button, Flex, useTheme, IconButton } from '@chakra-ui/react';
 import { useSystem } from '@fastgpt/web/hooks/useSystem';
 import { useEditTitle } from '@/web/common/hooks/useEditTitle';
@@ -47,43 +47,28 @@ const ChatHistorySlider = ({ confirmClearText }: { confirmClearText: string }) =
   const appAvatar = useContextSelector(ChatItemContext, (v) => v.chatBoxData?.app.avatar);
   const showRouteToAppDetail = useContextSelector(ChatItemContext, (v) => v.showRouteToAppDetail);
 
-  // 只有当 activeChatId、histories 或 t 变化时
-  // 才重新计算 concatHistory，否则用上一次的缓存值，提高性能。
   // const concatHistory = useMemo(() => {
-  //   // formatHistories就是左侧菜单栏历史记录
   //   const formatHistories: HistoryItemType[] = histories.map((item) => {
   //     return {
-  //       id: item.chatId, // 把 chatId 作为 id
-  //       title: item.title, // 聊天标题
-  //       customTitle: item.customTitle, // 自定义标题
-  //       top: item.top, // 是否置顶
-  //       updateTime: item.updateTime // 更新时间
+  //       id: item.chatId,
+  //       title: item.title,
+  //       customTitle: item.customTitle,
+  //       top: item.top,
+  //       updateTime: item.updateTime
   //     };
   //   });
-  //   // 准备一个新的聊天对象 newChat，用于显示"新聊天"
   //   const newChat: HistoryItemType = {
   //     id: activeChatId,
-  //     title: t('common:core.chat.New Chat'), // 翻译成"新建聊天"的标题
-  //     updateTime: new Date() // 当前时间
+  //     title: t('common:core.chat.New Chat'),
+  //     updateTime: new Date()
   //   };
-  //   // 在已有聊天记录里找找，当前的 activeChatId 有没有对应的聊天记录
   //   const activeChat = histories.find((item) => item.chatId === activeChatId);
 
-  //   // 如果没有找到对应的 activeChat（即是新建聊天）， → 就把 newChat 加到最前面，再加上所有历史记录。
-  //   // 如果找到了， → 就只返回历史记录列表。
   //   return !activeChat ? [newChat].concat(formatHistories) : formatHistories;
   // }, [activeChatId, histories, t]);
-  const [isHistoryReady, setIsHistoryReady] = useState(false);
-
-  // 监听 histories 更新
-  useEffect(() => {
-    if (histories.length > 0) {
-      setIsHistoryReady(true);
-    }
-  }, [histories]);
 
   const concatHistory = useMemo(() => {
-    const formatHistories = histories.map((item) => ({
+    const formatHistories: HistoryItemType[] = histories.map((item) => ({
       id: item.chatId,
       title: item.title,
       customTitle: item.customTitle,
@@ -91,22 +76,19 @@ const ChatHistorySlider = ({ confirmClearText }: { confirmClearText: string }) =
       updateTime: item.updateTime
     }));
 
-    const activeChat = histories.find((item) => item.chatId === activeChatId);
+    const isActiveChatInList = histories.some((item) => item.chatId === activeChatId);
 
-    // 等 histories 更新完成再判断是否需要插入新建聊天
-    if (isHistoryReady && !activeChat && activeChatId) {
-      return [
-        {
-          id: activeChatId,
-          title: t('common:core.chat.New Chat'),
-          updateTime: new Date()
-        },
-        ...formatHistories
-      ];
+    if (!isActiveChatInList && activeChatId) {
+      const newChat: HistoryItemType = {
+        id: activeChatId,
+        title: t('common:core.chat.New Chat'),
+        updateTime: new Date()
+      };
+      return [newChat, ...formatHistories];
     }
 
     return formatHistories;
-  }, [activeChatId, histories, isHistoryReady, t]);
+  }, [activeChatId, histories, t]);
 
   // custom title edit
   const { onOpenModal, EditModal: EditTitleModal } = useEditTitle({

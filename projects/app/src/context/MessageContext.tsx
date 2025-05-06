@@ -20,7 +20,7 @@ const MessageContext = createContext<MessageContextType | undefined>(undefined);
 export const MessageProvider = ({ children }: { children: React.ReactNode }) => {
   const [message, setMessage] = useState<MessageObject>({
     deep: 0,
-    selectedValue: '111111'
+    selectedValue: 'No_Knowledge'
   });
 
   return (

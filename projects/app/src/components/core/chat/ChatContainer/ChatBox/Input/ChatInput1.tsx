@@ -95,7 +95,7 @@ const ChatInput = ({
   // 选择知识库初始值
   const [repository, setRepository] = useState([
     {
-      _id: '111111',
+      _id: 'No_Knowledge',
       name: '知识库0'
     }
   ]);
@@ -103,7 +103,7 @@ const ChatInput = ({
   const { message, setMessage } = useMessageContext();
 
   // 知识库下拉框选择的值
-  const [selectedValue, setSelectedValue] = useState('111111');
+  const [selectedValue, setSelectedValue] = useState('No_Knowledge');
   useEffect(() => {
     async function fetchgetUser() {
       try {
@@ -478,7 +478,7 @@ const ChatInput = ({
                       setSelectedValue(e.target.value);
                     } else {
                       // 默认值
-                      setSelectedValue('111111');
+                      setSelectedValue('No_Knowledge');
                     }
                   }}
                 >

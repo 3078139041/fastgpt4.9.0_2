@@ -109,7 +109,7 @@ const OutLink = (props: Props) => {
     }
   };
 
-  const [customVar1, setCustomVar1] = useState({ deep: 0, selectedValue: '111111' });
+  const [customVar1, setCustomVar1] = useState({ deep: 0, selectedValue: 'No_Knowledge' });
   // 处理点击事件，切换值
   // const handleToggleVariable = () => {
   //   setCustomVar1((prev) => (prev === 1 ? 2 : 1));
@@ -227,8 +227,8 @@ const OutLink = (props: Props) => {
           variables: {
             ...variables,
             ...customVariables,
-            customVariable1: customVar1.deep, // 添加自定义变量到请求体
-            datasets: customVar1.selectedValue || 111111
+            DeepThink: customVar1.deep, // 添加自定义变量到请求体
+            No_Knowledge: customVar1.selectedValue || 'No_Knowledge'
           },
           responseChatItemId,
           chatId: completionChatId,
