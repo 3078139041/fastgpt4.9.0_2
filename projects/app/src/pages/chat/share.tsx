@@ -228,7 +228,7 @@ const OutLink = (props: Props) => {
             ...variables,
             ...customVariables,
             DeepThink: customVar1.deep, // 添加自定义变量到请求体
-            No_Knowledge: customVar1.selectedValue || 'No_Knowledge'
+            Knowledge: customVar1.selectedValue || 'No_Knowledge'
           },
           responseChatItemId,
           chatId: completionChatId,
